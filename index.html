@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A private Sanskrit transliteration workspace." />
+    <meta name="theme-color" content="#f4f0e8" />
+    <title>Akṣarapad</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="./" aria-label="Akṣarapad home">
+          <span class="brand-mark" aria-hidden="true">अं</span>
+          <span>
+            <span class="brand-name">Akṣarapad</span>
+            <span class="brand-subtitle">Sanskrit transliteration</span>
+          </span>
+        </a>
+
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 15.4A8.8 8.8 0 0 1 8.6 3.4 8.8 8.8 0 1 0 20.6 15.4Z"/></svg>
+        </button>
+      </header>
+
+      <section class="converter" aria-label="Transliteration converter">
+        <div class="scheme-bar">
+          <label class="scheme-control" for="source-script">
+            <span>From</span>
+            <select id="source-script">
+              <option value="Devanagari">Devanagari</option>
+              <option value="IAST">IAST</option>
+              <option value="HK">Harvard-Kyoto</option>
+              <option value="Itrans">ITRANS</option>
+              <option value="Velthuis">Velthuis</option>
+            </select>
+          </label>
+
+          <button id="swap-button" class="swap-button" type="button" aria-label="Swap input and output schemes" title="Swap (Ctrl + Enter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3-3m-3 3 3 3"/></svg>
+            <span>Swap</span>
+          </button>
+
+          <label class="scheme-control scheme-control-output" for="target-script">
+            <span>To</span>
+            <select id="target-script">
+              <option value="Devanagari">Devanagari</option>
+              <option value="IAST" selected>IAST</option>
+              <option value="HK">Harvard-Kyoto</option>
+              <option value="Itrans">ITRANS</option>
+              <option value="Velthuis">Velthuis</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="panels" id="panels">
+          <section class="text-panel" aria-labelledby="input-heading">
+            <div class="panel-heading">
+              <h1 id="input-heading">Input</h1>
+              <span id="input-count" class="character-count">0 characters</span>
+            </div>
+            <textarea id="input-text" lang="sa" spellcheck="false" autofocus placeholder="Type or paste Sanskrit text here…"></textarea>
+            <div class="panel-actions">
+              <button id="clear-button" class="text-button" type="button">Clear</button>
+            </div>
+          </section>
+
+          <section class="text-panel output-panel" aria-labelledby="output-heading">
+            <div class="panel-heading">
+              <h1 id="output-heading">Output</h1>
+              <span id="engine-status" class="engine-status" role="status">Starting engine…</span>
+            </div>
+            <textarea id="output-text" lang="sa" spellcheck="false" readonly aria-label="Converted text" placeholder="The conversion will appear here."></textarea>
+            <div class="panel-actions">
+              <button id="copy-button" class="text-button" type="button">Copy</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="vendor/aksharamukha/dist/index.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
