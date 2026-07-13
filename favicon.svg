@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="32" fill="#f6f3ec"/>
-  <circle cx="32" cy="32" r="25" fill="none" stroke="#b7924a"/>
-  <text x="32" y="42" text-anchor="middle" fill="#30456b" font-size="30" font-family="Noto Serif Devanagari, serif">अं</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#f6f3ec"/><g fill="none" stroke="#b7924a" stroke-width="2" stroke-linejoin="round"><path d="M50 12C42 22 40 31 50 41c10-10 8-19 0-29ZM72 20c-13 2-21 9-22 22 14-3 20-11 22-22ZM88 44c-14-3-24 1-29 12 14 3 24-2 29-12ZM84 69c-13-5-24-2-31 8 14 5 25 1 31-8ZM64 88c-5-13-13-19-25-18 5 13 14 19 25 18ZM36 88c5-13 13-19 25-18-5 13-14 19-25 18ZM16 69c13-5 24-2 31 8-14 5-25 1-31-8ZM12 44c14-3 24 1 29 12-14 3-24-2-29-12ZM28 20c13 2 21 9 22 22-14-3-20-11-22-22Z"/><circle cx="50" cy="50" r="24"/></g><text x="50" y="59" text-anchor="middle" fill="#30456b" font-family="Noto Serif Devanagari,Nirmala UI,serif" font-size="27">अं</text></svg>

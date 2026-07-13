@@ -13,10 +13,16 @@
     <main class="app-shell">
       <header class="app-header">
         <a class="brand" href="./" aria-label="Akṣarapad home">
-          <span class="brand-mark" aria-hidden="true">अं</span>
-          <span>
+          <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+            <g class="lotus-outer">
+              <path d="M50 11C42 21 40 31 50 41c10-10 8-20 0-30Z"/><path d="M72 19c-13 2-21 9-22 22 14-3 20-11 22-22Z"/><path d="M88 43c-14-3-24 1-29 12 14 3 24-2 29-12Z"/><path d="M84 68c-13-5-24-2-31 8 14 5 25 1 31-8Z"/><path d="M64 87c-5-13-13-19-25-18 5 13 14 19 25 18Z"/><path d="M36 87c5-13 13-19 25-18-5 13-14 19-25 18Z"/><path d="M16 68c13-5 24-2 31 8-14 5-25 1-31-8Z"/><path d="M12 43c14-3 24 1 29 12-14 3-24-2-29-12Z"/><path d="M28 19c13 2 21 9 22 22-14-3-20-11-22-22Z"/>
+            </g>
+            <circle cx="50" cy="50" r="24" class="lotus-ring"/>
+            <text x="50" y="59" text-anchor="middle">अं</text>
+          </svg>
+          <span class="brand-copy">
             <span class="brand-name">Akṣarapad</span>
-            <span class="brand-subtitle">Sanskrit transliteration</span>
+            <span class="brand-subtitle">Sanskrit Transliteration</span>
           </span>
         </a>
 
@@ -81,6 +87,16 @@
         </div>
       </section>
     </main>
+
+    <footer class="app-footer">
+      <span>Akṣarapad</span>
+      <span class="footer-rule" aria-hidden="true"></span>
+      <nav aria-label="Project links">
+        <a href="https://github.com/virtualvinodh/aksharamukha" target="_blank" rel="noreferrer">Aksharamukha Engine</a>
+        <a href="https://github.com/virtualvinodh/aksharamukha/blob/master/LICENSE" target="_blank" rel="noreferrer">MIT License</a>
+        <a href="https://github.com/oleandrum/aksharapad" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </footer>
 
     <script src="vendor/aksharamukha/dist/index.global.js"></script>
     <script src="app.js"></script>
