@@ -1,0 +1,11 @@
+Akṣarapad
+Copyright (C) 2026 oleandrum
+
+This product includes Aksharamukha.js 2.3.0-32 by Param Siddharth.
+Aksharamukha.js is based on Aksharamukha by Vinodh Rajan.
+Source: https://github.com/paramsiddharth/aksharamukha.js
+License: GNU General Public License, version 3 only.
+
+The unmodified, vendored Aksharamukha.js package and its licence text are
+available in vendor/aksharamukha/. Its bundled Pyodide runtime and Python
+packages retain their respective upstream notices and licences.

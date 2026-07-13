@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,26 +10,32 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <main class="app-shell">
       <header class="app-header">
-        <a class="brand" href="./" aria-label="Akṣarapad home">
+        <!-- <a class="brand" href="./" aria-label="Akṣarapad home">
           <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
             <g class="lotus-outer">
               <path d="M50 11C42 21 40 31 50 41c10-10 8-20 0-30Z"/><path d="M72 19c-13 2-21 9-22 22 14-3 20-11 22-22Z"/><path d="M88 43c-14-3-24 1-29 12 14 3 24-2 29-12Z"/><path d="M84 68c-13-5-24-2-31 8 14 5 25 1 31-8Z"/><path d="M64 87c-5-13-13-19-25-18 5 13 14 19 25 18Z"/><path d="M36 87c5-13 13-19 25-18-5 13-14 19-25 18Z"/><path d="M16 68c13-5 24-2 31 8-14 5-25 1-31-8Z"/><path d="M12 43c14-3 24 1 29 12-14 3-24-2-29-12Z"/><path d="M28 19c13 2 21 9 22 22-14-3-20-11-22-22Z"/>
             </g>
             <circle cx="50" cy="50" r="24" class="lotus-ring"/>
             <text x="50" y="59" text-anchor="middle">अं</text>
-          </svg>
-          <span class="brand-copy">
-            <span class="brand-name">Akṣarapad</span>
-            <span class="brand-subtitle">Sanskrit Transliteration</span>
-          </span>
+          </svg> -->
+        <span class="brand-copy">
+          <span class="brand-name">Akṣarapad</span>
+          <!-- <span class="brand-subtitle">Sanskrit Transliteration</span> -->
+        </span>
         </a>
 
         <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle color theme" title="Toggle color theme">
-          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"/></svg>
-          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 15.4A8.8 8.8 0 0 1 8.6 3.4 8.8 8.8 0 1 0 20.6 15.4Z"/></svg>
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5" />
+            <path d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56" />
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.6 15.4A8.8 8.8 0 0 1 8.6 3.4 8.8 8.8 0 1 0 20.6 15.4Z" />
+          </svg>
         </button>
       </header>
 
@@ -46,7 +53,9 @@
           </label>
 
           <button id="swap-button" class="swap-button" type="button" aria-label="Swap input and output schemes" title="Swap (Ctrl + Enter)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3-3m-3 3 3 3"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3-3m-3 3 3 3" />
+            </svg>
             <span>Swap</span>
           </button>
 
@@ -101,4 +110,5 @@
     <script src="vendor/aksharamukha/dist/index.global.js"></script>
     <script src="app.js"></script>
   </body>
+
 </html>
