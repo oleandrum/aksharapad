@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aksharapad — Type Sanskrit in Devanagari</title>
+<meta name="description" content="A Devanagari input method (IME): type IAST, Harvard-Kyoto, ITRANS, or Velthuis and have it convert to Devanagari as you type.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/180.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1f26'/%3E%3Crect x='1.5' y='1.5' width='61' height='61' rx='13' fill='none' stroke='%23383b46' stroke-width='2'/%3E%3Ctext x='32' y='45' font-family='Georgia, Times New Roman, serif' font-size='34' font-weight='700' fill='%23cf9a4c' text-anchor='middle'%3E%E0%A4%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,650;1,9..144,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#f6f3ea; --surface:#fdfcf8; --surface-raised:#f0ebdd; --hair:#ddd4bf; --hair-soft:#e8e1cf;
+    --bone:#2a271f; --bone-dim:#6b6455; --brass:#a9722f; --brass-dim:#8a5d27; --brick:#a24a41; --focus:#8a5d27;
+    --max:920px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme]){
+      --ink:#141419; --surface:#1d1f26; --surface-raised:#262832; --hair:#383b46; --hair-soft:#2b2e38;
+      --bone:#ede6d6; --bone-dim:#a9a49a; --brass:#cf9a4c; --brass-dim:#9c7a45; --brick:#b3524a; --focus:#e7c988;
+    }
+  }
+  :root[data-theme="light"]{
+    --ink:#f6f3ea; --surface:#fdfcf8; --surface-raised:#f0ebdd; --hair:#ddd4bf; --hair-soft:#e8e1cf;
+    --bone:#2a271f; --bone-dim:#6b6455; --brass:#a9722f; --brass-dim:#8a5d27; --brick:#a24a41; --focus:#8a5d27;
+  }
+  :root[data-theme="dark"]{
+    --ink:#141419; --surface:#1d1f26; --surface-raised:#262832; --hair:#383b46; --hair-soft:#2b2e38;
+    --bone:#ede6d6; --bone-dim:#a9a49a; --brass:#cf9a4c; --brass-dim:#9c7a45; --brick:#b3524a; --focus:#e7c988;
+  }
+  *{box-sizing:border-box;}
+  html{transition:background-color .25s ease;}
+  @media (prefers-reduced-motion:reduce){ *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+  body{margin:0; background:var(--ink); color:var(--bone); font-family:"Source Serif 4", Georgia, serif; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  a{color:var(--brass);}
+  a:hover{color:var(--focus);}
+  :focus-visible{outline:2px solid var(--focus); outline-offset:3px; border-radius:4px;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 24px;}
+
+  header.hero{padding:64px 0 40px; border-bottom:1px solid var(--hair-soft);}
+  .top-bar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:26px; flex-wrap:wrap;}
+  .eyebrow{font-family:"JetBrains Mono", monospace; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--brass); display:flex; align-items:center; gap:10px; margin:0;}
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--brass-dim); display:inline-block;}
+
+  .theme-switch{display:inline-flex; background:var(--surface-raised); border:1px solid var(--hair); border-radius:22px; padding:3px; gap:2px; flex-shrink:0;}
+  .theme-switch button{appearance:none; border:none; background:transparent; cursor:pointer; width:30px; height:30px; border-radius:18px; display:flex; align-items:center; justify-content:center; color:var(--bone-dim);}
+  .theme-switch button svg{width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+  .theme-switch button[aria-pressed="true"]{background:var(--brass); color:#1a1509;}
+  .theme-switch button:hover:not([aria-pressed="true"]){color:var(--brass);}
+
+  h1{font-family:"Fraunces", serif; font-weight:560; font-size:clamp(2rem, 4.6vw, 3.1rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 18px; max-width:16ch;}
+  h1 em{font-style:italic; font-weight:500; color:var(--brass);}
+  .lede{font-size:1.08rem; color:var(--bone-dim); max-width:60ch; margin:0 0 22px;}
+
+  .app-cta{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:8px;}
+  .app-cta a{
+    font-family:"JetBrains Mono", monospace; font-size:13px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:22px;
+    border:1px solid var(--hair); color:var(--bone); background:var(--surface);
+  }
+  .app-cta a.primary{background:var(--brass); color:#1a1509; border-color:var(--brass);}
+  .app-cta a:hover{border-color:var(--brass-dim); color:var(--brass);}
+  .app-cta a.primary:hover{color:#1a1509; opacity:.92;}
+  .app-cta svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+  .hint{font-family:"JetBrains Mono", monospace; font-size:11.5px; color:var(--bone-dim); margin:14px 0 0;}
+
+  .frame{margin-top:36px; border:1px solid var(--hair-soft); border-radius:20px; overflow:hidden; background:var(--surface-raised); box-shadow:0 1px 2px rgba(0,0,0,.05), 0 20px 50px -20px rgba(0,0,0,.25);}
+  .frame iframe{display:block; width:100%; height:640px; border:none;}
+
+  section{padding:48px 0;}
+  section + section{border-top:1px solid var(--hair-soft);}
+  h2{font-family:"Fraunces", serif; font-weight:560; font-size:1.5rem; margin:0 0 12px;}
+  .features{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .feature{background:var(--surface); border:1px solid var(--hair-soft); border-radius:12px; padding:20px;}
+  .feature h3{font-family:"Fraunces",serif; font-size:1.02rem; font-weight:650; margin:0 0 8px;}
+  .feature p{color:var(--bone-dim); font-size:.94rem; margin:0;}
+  @media (max-width:760px){ .features{grid-template-columns:1fr;} .frame iframe{height:720px;} }
+
+  footer{padding:36px 0 56px; color:var(--bone-dim); font-size:.9rem;}
+  footer .links{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:12px; font-family:"JetBrains Mono", monospace; font-size:12px;}
+  footer .links a{padding:4px 0;}
+  footer p{margin:0 0 8px; max-width:66ch;}
+  @media (max-width:480px){ footer .links{flex-direction:column; gap:12px;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top-bar">
+      <p class="eyebrow">Devanagari IME · Sanskrit</p>
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button type="button" data-theme-choice="system" aria-label="System theme" aria-pressed="true">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </button>
+        <button type="button" data-theme-choice="light" aria-label="Light theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+        </button>
+        <button type="button" data-theme-choice="dark" aria-label="Dark theme" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <h1>Type Sanskrit, <em>get Devanagari.</em></h1>
+    <p class="lede">A Devanagari input method for the browser. Type in IAST, Harvard-Kyoto, ITRANS, or Velthuis — press space, and the word converts to Devanagari instantly. Powered by the real <a href="https://github.com/virtualvinodh/aksharamukha-python" target="_blank" rel="noopener">Aksharamukha</a> engine, running entirely offline in your browser.</p>
+
+    <div class="app-cta">
+      <a href="app.html" class="primary">
+        <svg viewBox="0 0 24 24"><path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14"/></svg>
+        Open the composer
+      </a>
+      <a href="https://github.com/oleandrum/aksharapad/releases/latest/download/Aksharapad.dmg">
+        <svg viewBox="0 0 24 24"><path d="M17 20.5H7A4 4 0 0 1 5.6 13a5 5 0 0 1 9.8-1.5A4.5 4.5 0 0 1 17 20.5Z"/></svg>
+        Download for macOS
+      </a>
+    </div>
+    <p class="hint">On iPhone/iPad: open the composer, then Share → Add to Home Screen for an installable, offline-capable icon.</p>
+
+    <div class="frame">
+      <iframe src="app.html" title="Aksharapad composer" loading="lazy"></iframe>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Four keyboard schemes</h3>
+        <p>IAST, Harvard-Kyoto, ITRANS, and Velthuis — switch anytime, mid-sentence.</p>
+      </div>
+      <div class="feature">
+        <h3>Space-triggered conversion</h3>
+        <p>Type a word, hit space, and it becomes Devanagari immediately — no separate "convert" step.</p>
+      </div>
+      <div class="feature">
+        <h3>Vedic accent marks</h3>
+        <p>A palette of the full Unicode Vedic Extensions block for svara marks, anusvara variants, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="https://github.com/oleandrum/aksharapad">Repository</a>
+      <a href="https://github.com/oleandrum/aksharapad/releases">Releases</a>
+      <a href="https://github.com/virtualvinodh/aksharamukha-python" target="_blank" rel="noopener">Aksharamukha (original)</a>
+      <a href="https://www.aksharamukha.com/input/Devanagari" target="_blank" rel="noopener">Official IME (100+ scripts)</a>
+    </div>
+    <p>This is a personal, reduced-scope interface limited to four schemes. For the complete tool supporting many more scripts and languages, visit the official Aksharamukha IME linked above.</p>
+    <p>Transliteration engine © Vinodh Rajan, licensed under GNU AGPL 3.0. Browser port by Param, inspired by and based on the original Aksharamukha.</p>
+  </div>
+</footer>
+
+<script>
+  const themeButtons = document.querySelectorAll('.theme-switch button');
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const choice = btn.dataset.themeChoice;
+      if (choice === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', choice);
+      }
+      themeButtons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    });
+  });
+</script>
+
+</body>
+</html>

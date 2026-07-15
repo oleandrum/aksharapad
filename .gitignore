@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local
+node_modules/
+
+# deno desktop build artifacts (distribute via GitHub Releases instead)
+*.app/
+*.dmg
+*.dylib
+*.exe
+*.msi
+*.AppImage
+*.deb
+*.rpm
+dist/

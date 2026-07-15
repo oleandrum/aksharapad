@@ -1,0 +1,15 @@
+{
+  "name": "aksharapad",
+  "version": "1.0.0",
+  "exports": "./main.ts",
+  "desktop": {
+    "app": {
+      "name": "Aksharapad",
+      "identifier": "com.oleandrum.aksharapad",
+      "icons": {
+        "macos": "./icons/app.icns"
+      }
+    },
+    "backend": "webview"
+  }
+}
